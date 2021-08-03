@@ -5,10 +5,12 @@ import (
 )
 
 func main() {
-	server := adapter.WebAdapter{}
-	server.SetWebAdapter(adapter.FancyRequester{})
-	client := adapter.WebClient{}
-	client.WebClient(&server)
+	// server := adapter.WebAdapter{}
+	// server.SetWebAdapter(adapter.FancyRequester{})
+	// client := adapter.WebClient{}
+	// client.WebClient(&server)
+	server := adapter.NewWebAdapter(adapter.FancyRequester{})
+	client := adapter.NewWebClient(*server)
 	client.DoWork()
 }
 

@@ -12,8 +12,8 @@ type WebClient struct {
 	webRequester WebRequester
 }
 
-func (w *WebClient) WebClient(webRequester WebRequester) {
-	w.webRequester = webRequester
+func NewWebClient(webRequester WebAdapter) *WebClient {
+	return &WebClient{&webRequester}
 }
 
 func (w *WebClient) DoWork() {
@@ -32,7 +32,7 @@ func (o *OldWebRequester) requestHandler() {
 type FancyRequester struct {
 }
 
-func (f *FancyRequester) fancyRequester() {
+func (f *FancyRequester) FancyRequester() {
 	fmt.Println("Yay! fancyRequestHandler is called!")
 }
 
@@ -45,6 +45,10 @@ func (w *WebAdapter) SetWebAdapter(fancyRequester FancyRequester) {
 	w.fancyRequester = fancyRequester
 }
 
+func NewWebAdapter(fancyRequester FancyRequester) *WebAdapter {
+	return &WebAdapter{fancyRequester}
+}
+
 func (w *WebAdapter) requestHandler() {
-	w.fancyRequester.fancyRequester()
+	w.fancyRequester.FancyRequester()
 }
