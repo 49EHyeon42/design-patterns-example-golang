@@ -1,15 +1,19 @@
 package main
 
 import (
-	"golang-designPattern/structural/adapter"
+	"fmt"
+	"golang-designPattern/behavioral/templateMethod"
 )
 
 func main() {
-	newAdapter := adapter.NewWebAdapter(adapter.FancyRequester{})
-	client := adapter.NewWebClient(*newAdapter)
-	client.DoWork()
+	fmt.Println("1.")
+	var wood templateMethod.WoodenHouse
+	wood.BuildHouse()
+	// fmt.Println("2.")
+	// glass := templateMethod.GlassHouse{}
+	// glass.BuildHouse()
 }
 
-/*
-link : https://yaboong.github.io/design-pattern/2018/10/15/adapter-pattern/
-*/
+// 자바에서 golang 으로 구현
+// 참고 : https://stackoverflow.com/questions/38123911/golang-method-override
+// 링크 : https://niceman.tistory.com/142
