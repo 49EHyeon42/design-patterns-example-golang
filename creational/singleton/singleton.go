@@ -1,5 +1,7 @@
 package singleton
 
+import "sync"
+
 /*
 	전역변수 보호
 	1. 예제1, 스레드 사용이 안전하지 않음
@@ -148,3 +150,18 @@ func New() *single {
         return instantiated
 }
 */
+
+type singleton map[string]string
+
+var (
+	once sync.Once
+
+	instance singleton
+)
+
+func New() singleton {
+	once.Do(func() {
+		instance = make(singleton)
+	})
+	return instance
+}
